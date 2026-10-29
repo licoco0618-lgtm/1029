@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="智光商工115學年度第1學期第一次段考國語文互動學習網站，收錄段考全真試卷、錯題深度剖析、世說新語與哲學思辨講義">
+  <title>國文段考智慧學習網 | 智光商工 115-1 國語文試卷互動解析平台</title>
+  <!-- Google Fonts: Inter & Noto Serif TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 背景流光特效 -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- 頂部導航列 -->
+  <header class="navbar" id="top-navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <span>文</span>
+        </div>
+        <div class="brand-text">
+          <h1>國文段考智慧學習網</h1>
+          <span class="sub-badge">智光商工 115學年度第1學期 第一次段考</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" id="main-nav-tabs">
+        <button class="nav-tab active" data-tab="dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          學習總覽
+        </button>
+        <button class="nav-tab" data-tab="simulator">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          全真題庫測驗
+        </button>
+        <button class="nav-tab highlight-tab" data-tab="mistakes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          英慈錯題特訓
+          <span class="badge-count" id="mistake-badge-count">7</span>
+        </button>
+        <button class="nav-tab" data-tab="knowledge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          段考核心講義
+        </button>
+        <button class="nav-tab" data-tab="original">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          原卷真跡對照
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle" title="切換深色/淺色模式">
+          <span class="theme-icon sun-icon">☀️</span>
+          <span class="theme-icon moon-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容容器 -->
+  <main class="main-content" id="app-container">
+
+    <!-- ================= TAB 1: 學習總覽 (DASHBOARD) ================= -->
+    <section class="tab-pane active" id="pane-dashboard">
+      <!-- 學生個人資訊與段考績效橫幅 -->
+      <div class="hero-score-card">
+        <div class="score-meta">
+          <div class="student-profile">
+            <div class="avatar-circle">英慈</div>
+            <div>
+              <div class="student-title">
+                <h2>李英慈 同學</h2>
+                <span class="tag tag-class">資處一仁 3號</span>
+                <span class="tag tag-school">智光商工日間部</span>
+              </div>
+              <p class="exam-name">115 學年度第 1 學期 第一次段考 國語文試卷</p>
+            </div>
+          </div>
+          <div class="score-stats-grid">
+            <div class="stat-pill stat-main">
+              <span class="stat-label">本次得分</span>
+              <div class="stat-val-group">
+                <span class="stat-val highlight-score" id="user-score-display">80</span>
+                <span class="stat-unit">分</span>
+              </div>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-label">班級平均</span>
+              <div class="stat-val-group">
+                <span class="stat-val">68.74</span>
+                <span class="stat-unit">分</span>
+              </div>
+            </div>
+            <div class="stat-pill stat-diff">
+              <span class="stat-label">領先平均</span>
+              <div class="stat-val-group">
+                <span class="stat-val text-success">+11.26</span>
+                <span class="stat-unit">分</span>
+              </div>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-label">錯題數量</span>
+              <div class="stat-val-group">
+                <span class="stat-val text-warning">7</span>
+                <span class="stat-unit">題</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-actions-row">
+          <button class="btn btn-primary" id="btn-quick-mistakes">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            立即衝刺英慈 7 大錯題
+          </button>
+          <button class="btn btn-secondary" id="btn-full-quiz-start">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            進入全真模擬考 (35題)
+          </button>
+          <button class="btn btn-outline" id="btn-view-knowledge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            查看段考重點講義
+          </button>
+        </div>
+      </div>
+
+      <!-- 能力分析雷達與題型得分拆解 -->
+      <div class="dashboard-grid">
+        <!-- 題型表現拆解 -->
+        <div class="card card-sections-breakdown">
+          <div class="card-header">
+            <h3>試卷題型得分診斷</h3>
+            <span class="badge">滿分 100 分</span>
+          </div>
+          <div class="card-body">
+            <div class="breakdown-list">
+              <div class="breakdown-item">
+                <div class="item-info">
+                  <span class="item-name">一、國字注音</span>
+                  <span class="item-score text-success">14 / 16 分 (87.5%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill fill-green" style="width: 87.5%;"></div>
+                </div>
+                <p class="item-hint">僅錯第7題「眠覺(ㄐㄧㄠˋ)」，誤寫為ㄐㄩㄝˊ。其餘「晦、釐、隘、灼、曂、雋」全對！</p>
+              </div>
+
+              <div class="breakdown-item">
+                <div class="item-info">
+                  <span class="item-name">二、配合題（思考偏誤／成語／字謎）</span>
+                  <span class="item-score text-success">12 / 12 分 (100% 滿分！)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill fill-green" style="width: 100%;"></div>
+                </div>
+                <p class="item-hint">存活者偏誤、現成偏誤、身無長物、口若懸河、字謎「萌、晶」全部答對！</p>
+              </div>
+
+              <div class="breakdown-item">
+                <div class="item-info">
+                  <span class="item-name">三、古文白話翻譯（詠絮之才）</span>
+                  <span class="item-score text-success">12 / 12 分 (100% 滿分！)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill fill-green" style="width: 100%;"></div>
+                </div>
+                <p class="item-hint">謝安家庭雪景對句翻譯通順典雅，字字到位，閱卷老師給予滿分肯定！</p>
+              </div>
+
+              <div class="breakdown-item">
+                <div class="item-info">
+                  <span class="item-name">四、綜合測驗 (單選 20 題)</span>
+                  <span class="item-score text-warning">42 / 60 分 (70.0%)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill fill-yellow" style="width: 70%;"></div>
+                </div>
+                <p class="item-hint">錯 6 題（第1、3、9、15、19、20題），主要失分於「字形偵錯、論說文深入語意、成語精微意境、筆記小說流變與編纂背景」。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 提分診斷與作戰指南 -->
+        <div class="card card-ai-insights">
+          <div class="card-header">
+            <h3>國文名師提分精華錦囊</h3>
+            <span class="badge badge-accent">弱點突破</span>
+          </div>
+          <div class="card-body">
+            <div class="insight-box insight-highlight">
+              <div class="insight-icon">🎯</div>
+              <div class="insight-content">
+                <h4>1. 《世說新語》與六朝筆記小說（失分 6 分）</h4>
+                <p><strong>痛點：</strong>第19題混淆「志怪(搜神記)」與「志人(世說新語)」；第20題誤以為世說新語按年編排或具志怪特色。<br>
+                <strong>提分關鍵：</strong>記住「宋臨川王劉義慶集文士編纂」、「按性質分36門(起自德行終於仇隙)」、「魏晉名士言行志人小說雛型」。</p>
+              </div>
+            </div>
+
+            <div class="insight-box">
+              <div class="insight-icon">💡</div>
+              <div class="insight-content">
+                <h4>2. 成語辨析：「深以為然」vs「抽絲剝繭」（失分 3 分）</h4>
+                <p><strong>痛點：</strong>第9題誤將「深以為然」當成反意。其實「然」作「對、贊同」，深以為然是「非常贊同」！而遇見老長官視若無睹應是「忘恩負義/過河拆橋」，絕非「抽絲剝繭」。</p>
+              </div>
+            </div>
+
+            <div class="insight-box">
+              <div class="insight-icon">🔍</div>
+              <div class="insight-content">
+                <h4>3. 曹操「我才不及卿，乃覺三十里」（失分 3 分）</h4>
+                <p><strong>痛點：</strong>第15題誤選魏武江郎才盡。正解是以實際車馬行走的「三十里」距離，具象化雙方的捷悟思維差距！</p>
+              </div>
+            </div>
+
+            <div class="insight-box">
+              <div class="insight-icon">📖</div>
+              <div class="insight-content">
+                <h4>4. 一字多音：眠「覺」的讀音（失分 2 分）</h4>
+                <p><strong>痛點：</strong>字音第7題「眠覺」，睡醒之意，音 <strong>ㄐㄧㄠˋ</strong>（如睡覺、覺醒），非感覺的 ㄐㄩㄝˊ。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 快速單元卡片導航 -->
+      <div class="units-overview-section">
+        <h3 class="section-title">段考核心教材知識地圖</h3>
+        <div class="units-grid">
+          <div class="unit-card" data-filter="冀劍制">
+            <div class="unit-badge">現代思辨</div>
+            <h4>從「感覺」到「事實」的差距</h4>
+            <p>作者冀劍制。解析認知盲點、反思辯證、同溫層效應、存活者偏誤與理性思辨。</p>
+            <div class="unit-footer">
+              <span class="unit-stat">考卷占比：約 26 分</span>
+              <button class="btn btn-sm btn-outline go-unit-btn" data-unit="gap">精讀此單元</button>
+            </div>
+          </div>
+
+          <div class="unit-card" data-filter="詠絮之才">
+            <div class="unit-badge">世說新語</div>
+            <h4>〈詠絮之才〉謝道韞</h4>
+            <p>謝安家庭聚會詠雪。撒鹽空中（胡兒謝朗）vs 柳絮因風起（謝道韞）意境對決。</p>
+            <div class="unit-footer">
+              <span class="unit-stat">考卷占比：約 21 分</span>
+              <button class="btn btn-sm btn-outline go-unit-btn" data-unit="snow">精讀此單元</button>
+            </div>
+          </div>
+
+          <div class="unit-card" data-filter="雪夜訪友">
+            <div class="unit-badge">世說新語</div>
+            <h4>〈雪夜訪友〉王子猷</h4>
+            <p>乘興而行，興盡而返！夜雪訪戴安道，造門不前而返，彰顯魏晉名士任誕任情風格。</p>
+            <div class="unit-footer">
+              <span class="unit-stat">考卷占比：約 12 分</span>
+              <button class="btn btn-sm btn-outline go-unit-btn" data-unit="visit">精讀此單元</button>
+            </div>
+          </div>
+
+          <div class="unit-card" data-filter="絕妙好辭">
+            <div class="unit-badge">世說新語</div>
+            <h4>〈絕妙好辭〉曹娥碑</h4>
+            <p>曹操與楊修解曹娥碑題「黃絹幼婦外孫齏臼」八字。拆字離合法與捷悟三十里。</p>
+            <div class="unit-footer">
+              <span class="unit-stat">考卷占比：約 15 分</span>
+              <button class="btn btn-sm btn-outline go-unit-btn" data-unit="riddle">精讀此單元</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: 全真模擬測驗 (SIMULATOR) ================= -->
+    <section class="tab-pane" id="pane-simulator">
+      <div class="exam-header-bar">
+        <div class="exam-title-block">
+          <h2>國語文段考全真互動試卷</h2>
+          <span class="quiz-info-badge">全卷共 35 題 (字音8 + 配合6 + 翻譯1 + 單選20)</span>
+        </div>
+        <div class="exam-controls">
+          <div class="filter-group">
+            <label for="filter-category">題型篩選：</label>
+            <select id="filter-category" class="custom-select">
+              <option value="all">全部題目 (35題)</option>
+              <option value="pronounce">一、字音辨析 (8題)</option>
+              <option value="matching">二、配合題 (6題)</option>
+              <option value="translation">三、翻譯題 (1題)</option>
+              <option value="choice">四、綜合測驗 (20題)</option>
+            </select>
+          </div>
+          <button class="btn btn-sm btn-secondary" id="btn-reset-exam">重新作答</button>
+          <button class="btn btn-sm btn-primary" id="btn-submit-exam">批改整份考卷</button>
+        </div>
+      </div>
+
+      <!-- 快速切換試卷題號條 -->
+      <div class="quick-nav-bar" id="exam-quick-nav">
+        <!-- JS 動態生成題號泡泡 -->
+      </div>
+
+      <!-- 題目渲染清單容器 -->
+      <div class="questions-stream" id="questions-stream-container">
+        <!-- 由 app.js 動態渲染所有題目 -->
+      </div>
+
+      <!-- 底部批改按鈕 -->
+      <div class="exam-footer-submit">
+        <button class="btn btn-primary btn-lg" id="btn-submit-bottom">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          送出並查看全卷成績解析
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: 英慈錯題特訓 (MISTAKES) ================= -->
+    <section class="tab-pane" id="pane-mistakes">
+      <div class="mistakes-banner">
+        <div class="mistakes-banner-text">
+          <div class="banner-badge">李英慈 同學專屬錯題庫</div>
+          <h2>第一次段考 7 大錯題・精準打擊特訓</h2>
+          <p>本次段考李英慈同學表現優異（80分，高出班平均 11.26 分）！只要將以下 7 道關鍵失分點澈底融會貫通，下次段考即可輕鬆直奔 95+ 滿分！</p>
+        </div>
+        <div class="mistakes-counter-box">
+          <span class="count-num">7</span>
+          <span class="count-txt">道待突破題型</span>
+        </div>
+      </div>
+
+      <!-- 錯題導航卡片 -->
+      <div class="mistake-cards-container" id="mistake-cards-list">
+        <!-- 由 app.js 動態渲染英慈錯的 7 題 -->
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: 段考核心講義 (KNOWLEDGE) ================= -->
+    <section class="tab-pane" id="pane-knowledge">
+      <div class="knowledge-nav-bar">
+        <button class="k-subtab active" data-target="k-article">思辨課文：從感覺到事實</button>
+        <button class="k-subtab" data-target="k-shishuo">古典精選：《世說新語》三則</button>
+        <button class="k-subtab" data-target="k-history">國學常識：六朝筆記小說</button>
+        <button class="k-subtab" data-target="k-idioms">成語修辭與析字法典</button>
+        <button class="k-subtab" data-target="k-flashcards">翻牌單字抽背卡</button>
+      </div>
+
+      <div class="knowledge-content-wrapper">
+        <!-- 講義 1: 冀劍制 思辨課文 -->
+        <article class="k-section active" id="k-article">
+          <div class="article-hero">
+            <span class="tag tag-accent">現代思辨論說文</span>
+            <h2>〈從「感覺」到「事實」的差距〉深度精華拆解</h2>
+            <p class="article-author">作者：冀劍制（華梵大學哲學系教授，著有《邏輯謬誤鑑識班》、動漫哲學課）</p>
+          </div>
+
+          <div class="knowledge-grid-2col">
+            <div class="content-block">
+              <h3>一、核心主旨與哲學思辨</h3>
+              <ul class="styled-list">
+                <li><strong>感官與認知的侷限：</strong>人們以為「理所當然」的事情，往往只是個人的直覺偏見或習慣，並非真正的客觀事實。</li>
+                <li><strong>「反思」的重要性：</strong>缺乏反思習慣，容易產生自以為正確但實為錯誤的盲點。透過持續反思、理性辯證，才能看清錯誤知識形成的原因。</li>
+                <li><strong>蘇格拉底的「無知之知」：</strong>承認自己並非全知、正視自己的無知，才能抱持懷疑求真的態度，避免因自負而做出錯誤決策。</li>
+                <li><strong>少數人與時代框架：</strong>當時代沉溺於某種偏見（如古代重男輕女），勇於跳脫框架的女權鼓吹者往往被視為異端而遭迫害，詮釋了少數人立場與權益常遭多數剝奪之艱困（段考第3題考點！）。</li>
+              </ul>
+            </div>
+
+            <div class="content-block">
+              <h3>二、段考必考三大思考偏誤</h3>
+              <div class="bias-card">
+                <div class="bias-badge bias-1">段考配合題第1題</div>
+                <h4>存活者偏誤 (Survivorship Bias)</h4>
+                <p><strong>定義：</strong>只看見成功的少數個案，而忽略了大量失敗的沉默分母，導致對成功率或路徑產生過度樂觀的誤判。</p>
+                <div class="example-box">
+                  <strong>考卷範例：</strong>「讀書無用，不如學比爾・蓋茲休學創業！」<br>
+                  <em>解析：休學創業成功的只有極少數天才，忽略了千千萬萬休學後一蹶不振的人。</em>
+                </div>
+              </div>
+
+              <div class="bias-card">
+                <div class="bias-badge bias-2">段考配合題第2題</div>
+                <h4>現成偏誤 (Availability Bias)</h4>
+                <p><strong>定義：</strong>僅根據腦海中最容易浮現、最熟悉的既有經驗或近期印象來做判斷，忽視更客觀全面的數據。</p>
+                <div class="example-box">
+                  <strong>考卷範例：</strong>「用過去的工作經驗否定人工智慧的發展。」<br>
+                  <em>解析：單憑過去的個人經驗局限，否定突飛猛進的新科技趨勢。</em>
+                </div>
+              </div>
+
+              <div class="bias-card">
+                <div class="bias-badge bias-3">段考單選第2題</div>
+                <h4>同溫層效應 (Echo Chamber)</h4>
+                <p><strong>定義：</strong>觀念、興趣或立場「相近」的人聚集在一起，不斷彼此強化認同，誤以為團體內的共識就是普羅大眾的普遍想法（以偏概全）。</p>
+                <div class="example-box">
+                  <strong>破解之道：</strong>多與不同背景、文化、觀點相異的人交流接觸，保持開放胸襟。
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 講義 2: 世說新語三則 -->
+        <article class="k-section" id="k-shishuo">
+          <div class="article-hero">
+            <span class="tag tag-accent">魏晉名士經典</span>
+            <h2>《世說新語》選篇 精讀與修辭探究</h2>
+          </div>
+
+          <div class="classics-card">
+            <div class="classics-header">
+              <span class="num-badge">選文一</span>
+              <h3>〈詠絮之才〉（出自《世說新語・言語》）</h3>
+            </div>
+            <div class="classics-body">
+              <div class="original-text-box">
+                <p class="source-text">
+                  謝太傅寒雪日內集，與兒女講論文義。俄而雪驟，公欣然曰：「白雪紛紛何所似？」<br>
+                  兄子胡兒曰：「撒鹽空中差可擬。」<br>
+                  兄女曰：「未若柳絮因風起。」公大笑樂。<br>
+                  即公大兄無奕女，左將軍王凝之妻也。
+                </p>
+                <button class="btn btn-sm btn-outline btn-tts" data-text="謝太傅寒雪日內集，與兒女講論文義。俄而雪驟，公欣然曰：白雪紛紛何所似？兄子胡兒曰：撒鹽空中差可擬。兄女曰：未若柳絮因風起。公大笑樂。">🔊 朗讀古文</button>
+              </div>
+
+              <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>人物</th>
+                      <th>比喻文句</th>
+                      <th>修辭與喻體</th>
+                      <th>意境與高下點評</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>兄子 胡兒</strong><br>(謝朗，謝據之子)</td>
+                      <td>「撒鹽空中差可擬」</td>
+                      <td>譬喻（借喻）<br>以「鹽」喻雪</td>
+                      <td><strong>形似而神乏：</strong>僅描摹出白雪色白、粒子下墜之「形色質感」，但鹽質重下墜，缺乏雪花輕盈飄逸的靈氣與詩意美感。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>兄女 謝道韞</strong><br>(謝奕之女，王凝之妻)</td>
+                      <td>「未若柳絮因風起」</td>
+                      <td>譬喻（借喻）<br>以「柳絮」喻雪</td>
+                      <td><strong>神形兼備，意境高妙：</strong>「柳絮」隨風翻飛漫天舞動，不僅色白形似，更生動捕捉了漫天飛雪乘風飄揚的浪漫神韻！後世以「詠絮之才」稱美有傑出文才的女子。</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="key-notes">
+                <strong>重要考點辭彙：</strong>
+                <ul>
+                  <li><strong>俄而：</strong>不久、片刻。</li>
+                  <li><strong>雪驟：</strong>雪勢變急、猛烈。</li>
+                  <li><strong>差可擬：</strong>大約、勉強可以比擬。「差」：大致、差不多；「擬」：比擬。</li>
+                  <li><strong>未若：</strong>不如、比不上。展現謝道韞自信超拔的才氣。</li>
+                  <li><strong>因風起：</strong>憑藉風勢起舞。「因」：憑藉、順著（段考第11題錯點！）。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="classics-card">
+            <div class="classics-header">
+              <span class="num-badge">選文二</span>
+              <h3>〈雪夜訪友〉（出自《世說新語・任誕》）</h3>
+            </div>
+            <div class="classics-body">
+              <div class="original-text-box">
+                <p class="source-text">
+                  王子猷居山陰，夜大雪，眠覺，開室命酌酒，四望皎然，因起彷徨，詠左思〈招隱詩〉。忽憶戴安道。時戴在剡，即便夜乘小船就之。經宿方至，造門不前而返。人問其故，王曰：「吾本乘興而行，興盡而返，何必見戴？」
+                </p>
+                <button class="btn btn-sm btn-outline btn-tts" data-text="王子猷居山陰，夜大雪，眠覺，開室命酌酒，四望皎然，因起彷徨，詠左思招隱詩。忽憶戴安道。時戴在剡，即便夜乘小船就之。經宿方至，造門不前而返。人問其故，王曰：吾本乘興而行，興盡而返，何必見戴？">🔊 朗讀古文</button>
+              </div>
+              <div class="character-analysis">
+                <h4>王子猷（王徽之）的精神風度解析</h4>
+                <p><strong>「乘興而行，興盡而返」：</strong>夜半大雪興致所至，不辭千里行舟經宿；至友人家門口興致已盡，轉身便歸。不執著於功利結果，重視的是心靈純粹的興致體驗，完美體現魏晉名士<strong>瀟灑任誕、率真曠達、不拘世俗禮法</strong>的高遠風神（段考第12、18題重點！）。</p>
+                <p><strong>易錯字音字義：</strong></p>
+                <ul>
+                  <li>眠「覺」：讀音 <strong>ㄐㄧㄠˋ</strong>，睡醒。</li>
+                  <li>經「宿」：經過一夜。宿常音 <strong>ㄙㄨˋ</strong>，今亦多通 <strong>ㄒㄧㄡˇ</strong>。</li>
+                  <li>「造」門不前而返：「造」為至、到之意。</li>
+                  <li>「彷徨」：徘徊、來回走動。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="classics-card">
+            <div class="classics-header">
+              <span class="num-badge">選文三</span>
+              <h3>〈絕妙好辭〉（出自《世說新語・捷悟》）</h3>
+            </div>
+            <div class="classics-body">
+              <div class="original-text-box">
+                <p class="source-text">
+                  魏武嘗過曹娥碑下，楊修從。碑背上見題作「黃絹幼婦外孫齏臼」八字。魏武謂修曰：「解不？」答曰：「解。」魏武曰：「卿未可言，待我思之。」行三十里，魏武乃曰：「吾已得。」令修別記所知。<br>
+                  修曰：「黃絹，色絲也，於字為『絕』；幼婦，少女也，於字為『妙』；外孫，女子也，於字為『好』；齏臼，受辛也，於字為『辤（辭）』；所謂『絕妙好辭』也。」魏武亦記之，與修同，乃歎曰：「我才不及卿，乃覺三十里。」
+                </p>
+                <button class="btn btn-sm btn-outline btn-tts" data-text="魏武嘗過曹娥碑下，楊修從。碑背上見題作黃絹幼婦外孫齏臼八字。魏武謂修曰：解不？答曰：解。魏武曰：卿未可言，待我思之。行三十里，魏武乃曰：吾已得。令修別記所知。修曰：黃絹，色絲也，於字為絕；幼婦，少女也，於字為妙；外孫，女子也，於字為好；齏臼，受辛也，於字為辭；所謂絕妙好辭也。魏武亦記之，與修同，乃歎曰：我才不及卿，乃覺三十里。">🔊 朗讀古文</button>
+              </div>
+
+              <div class="riddle-reveal-box">
+                <h4>曹娥碑文 析字法（離合字謎）大破解：</h4>
+                <div class="riddle-steps-grid">
+                  <div class="step-card">
+                    <span class="step-term">黃絹</span>
+                    <span class="step-formula">色絲也</span>
+                    <span class="step-char">「糹」+「色」= <strong>絕</strong></span>
+                  </div>
+                  <div class="step-card">
+                    <span class="step-term">幼婦</span>
+                    <span class="step-formula">少女也</span>
+                    <span class="step-char">「女」+「少」= <strong>妙</strong></span>
+                  </div>
+                  <div class="step-card">
+                    <span class="step-term">外孫</span>
+                    <span class="step-formula">女之子也</span>
+                    <span class="step-char">「女」+「子」= <strong>好</strong></span>
+                  </div>
+                  <div class="step-card">
+                    <span class="step-term">齏臼</span>
+                    <span class="step-formula">受辛之器也</span>
+                    <span class="step-char">「受」+「辛」= <strong>辤（辭）</strong></span>
+                  </div>
+                </div>
+                <div class="insight-pill">
+                  <strong>重要考點解讀：</strong>曹操「我才不及卿，乃覺三十里」並非江郎才盡，而是以<strong>實際行經的三十里路程</strong>，具體量化表現曹操與楊修思維反應之差距（段考第15題考點！）。
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 講義 3: 六朝筆記小說文學史 -->
+        <article class="k-section" id="k-history">
+          <div class="article-hero">
+            <span class="tag tag-accent">國學常識精要</span>
+            <h2>魏晉南北朝筆記小說與《世說新語》成書流變</h2>
+          </div>
+
+          <div class="history-content-block">
+            <h3>一、筆記小說兩大系統對比表（段考第19題關鍵！）</h3>
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>類別</th>
+                    <th>代表作品與作者</th>
+                    <th>主要內容與風貌</th>
+                    <th>形成背景</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>志怪小說</strong><br>(神怪靈異)</td>
+                    <td>晉・干寶<strong>《搜神記》</strong><br>張華《博物志》</td>
+                    <td>記述鬼神靈異、仙道妖怪、異域奇聞之事。</td>
+                    <td>東漢末年巫風盛行，道教與佛教思想傳播。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>志人小說</strong><br>(名士軼聞)</td>
+                    <td>南朝宋・劉義慶<strong>《世說新語》</strong><br>裴啟《語林》</td>
+                    <td>記述漢末魏晉名士的言談舉止、軼事瑣聞與精妙雋語。</td>
+                    <td>魏晉時期清談品評風氣盛行，崇尚玄學與個體才性。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style="margin-top: 30px;">二、《世說新語》專題重點手帖（段考第20題關鍵！）</h3>
+            <div class="points-grid">
+              <div class="point-item">
+                <span class="point-num">01</span>
+                <h4>作者與編者背景</h4>
+                <p>由南朝宋宗室<strong>臨川王劉義慶</strong>召集門下文士共同編撰。劉義慶生性簡約恬淡，為免捲入劉宋皇室殘酷的奪權政爭，寄情文藝著作。</p>
+              </div>
+              <div class="point-item">
+                <span class="point-num">02</span>
+                <h4>編排體例與架構</h4>
+                <p><strong>非按年編排！</strong>而是按「內容門類」分組，共分 <strong>三十六門</strong>。首門為《德行》，次為《言語》、《政事》、《文學》……終至《仇隙》。</p>
+              </div>
+              <div class="point-item">
+                <span class="point-num">03</span>
+                <h4>小說史上的崇高地位</h4>
+                <p>魯迅譽為「一部名士底（的）教科書」。文字簡約峻潔、傳神寫照，為古典筆記小說之巔峰，亦是後世許多典故成語的發源地。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 講義 4: 成語修辭析字法 -->
+        <article class="k-section" id="k-idioms">
+          <div class="article-hero">
+            <span class="tag tag-accent">修辭與成語庫</span>
+            <h2>段考必考成語、修辭與析字字謎詳解</h2>
+          </div>
+
+          <div class="idioms-grid">
+            <div class="idiom-card">
+              <div class="idiom-header">
+                <h4>深以為然</h4>
+                <span class="tag tag-correct">段考第9題正用</span>
+              </div>
+              <p><strong>釋義：</strong>內心非常贊同、十分認同。「然」在此為「對、贊同」之意。</p>
+              <div class="idiom-example">例句：同學對老師提出的建議深以為然，紛紛改進學習態度。</div>
+            </div>
+
+            <div class="idiom-card error-highlight">
+              <div class="idiom-header">
+                <h4>抽絲剝繭</h4>
+                <span class="tag tag-wrong">段考第9題誤用</span>
+              </div>
+              <p><strong>釋義：</strong>比喻按部就班、細緻深入地分析探究事理。不可用於形容態度冷漠或忘恩負義！</p>
+              <div class="idiom-example">考卷誤用：遇見提拔自己的老長官竟視若無睹，此態度應為「過河拆橋 / 忘恩負義」。</div>
+            </div>
+
+            <div class="idiom-card">
+              <div class="idiom-header">
+                <h4>身無長物</h4>
+                <span class="tag tag-correct">配合題第3題</span>
+              </div>
+              <p><strong>釋義：</strong>除一身之外別無多餘之物。「長（ㄓㄤˋ）」指多餘。形容貧困或名士儉約清高。</p>
+              <div class="idiom-example">例句：自從投資失利破產後，他顯得身無長物，四處流浪。</div>
+            </div>
+
+            <div class="idiom-card">
+              <div class="idiom-header">
+                <h4>口若懸河</h4>
+                <span class="tag tag-correct">配合題第4題</span>
+              </div>
+              <p><strong>釋義：</strong>說話像瀑布傾瀉般滔滔不絕，形容口才敏捷健談。</p>
+            </div>
+
+            <div class="idiom-card">
+              <div class="idiom-header">
+                <h4>目空一切 vs 不可一世</h4>
+                <span class="tag tag-correct">段考第17題</span>
+              </div>
+              <p><strong>釋義：</strong>兩者皆形容狂妄自大、目中無人，意涵相同。</p>
+            </div>
+
+            <div class="idiom-card">
+              <div class="idiom-header">
+                <h4>枕流漱石 vs 汲汲營營</h4>
+                <span class="tag tag-diff">反義對比</span>
+              </div>
+              <p><strong>枕流漱石：</strong>形容隱居山林、不慕世俗名利。<br><strong>汲汲營營：</strong>急切追求名利，奔走鑽營。</p>
+            </div>
+          </div>
+
+          <div class="content-block" style="margin-top: 30px;">
+            <h3>段考析字謎底揭祕（配合題5、6題）</h3>
+            <div class="riddle-reveal-box">
+              <p><strong>1. 十月十日：</strong>「十十」合為「艹」（草字頭），再加上「日」、「月」，結合成草木發芽之<strong>「萌」</strong>字！</p>
+              <p><strong>2. 七十二小時：</strong>一天24小時，72小時相當於「3天」也就是「3個日」，三日相疊合為光輝明亮的<strong>「晶」</strong>字！</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- 講義 5: 翻牌單字抽背卡 (Flashcards) -->
+        <article class="k-section" id="k-flashcards">
+          <div class="flashcards-control-panel">
+            <h3>段考核心字音字義・抽考翻牌卡</h3>
+            <p>點擊卡片翻面查看拼音、釋義與考點，支援左右切換與語音發音！</p>
+            <div class="flashcard-toolbar">
+              <button class="btn btn-sm btn-outline" id="fc-prev">← 上一張</button>
+              <span id="fc-counter">1 / 8</span>
+              <button class="btn btn-sm btn-outline" id="fc-next">下一張 →</button>
+            </div>
+          </div>
+
+          <div class="flashcard-stage">
+            <div class="flashcard-3d" id="main-flashcard">
+              <div class="fc-face fc-front">
+                <span class="fc-tag">字音考題</span>
+                <h2 class="fc-word" id="fc-word">眠「覺」</h2>
+                <span class="fc-hint">點擊卡片翻面看解答與解析</span>
+              </div>
+              <div class="fc-face fc-back">
+                <span class="fc-pronounce" id="fc-pinyin">ㄐㄧㄠˋ</span>
+                <p class="fc-meaning" id="fc-meaning">【釋義】睡醒。如「覺醒」。在《雪夜訪友》「眠覺，開室命酌酒」中作睡醒解，切勿誤讀為感覺之ㄐㄩㄝˊ！</p>
+                <button class="btn btn-sm btn-secondary fc-voice-btn" id="fc-voice-btn">🔊 朗讀發音</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: 原卷真跡對照 (ORIGINAL) ================= -->
+    <section class="tab-pane" id="pane-original">
+      <div class="original-exam-viewer">
+        <div class="viewer-sidebar">
+          <h3>段考試卷真跡照片</h3>
+          <p class="viewer-desc">點選頁面切換對照李英慈同學的原始考卷筆跡、批改紅筆與評分：</p>
+          <div class="page-selector-list">
+            <button class="page-btn active" data-img="1.jpg" data-page="P1-上半部">
+              <strong>第 1 頁 (P1)</strong>
+              <span>字音8題、配合6題、翻譯前導</span>
+            </button>
+            <button class="page-btn" data-img="2.jpg" data-page="P2-1">
+              <strong>第 2 頁 (P2-1)</strong>
+              <span>翻譯題批改、綜合測驗1-4題</span>
+            </button>
+            <button class="page-btn" data-img="3.jpg" data-page="P2-2 (上)">
+              <strong>第 3 頁 (P2-2 上)</strong>
+              <span>綜合測驗5-11題</span>
+            </button>
+            <button class="page-btn" data-img="4.jpg" data-page="P2-2 (下)">
+              <strong>第 4 頁 (P2-2 下)</strong>
+              <span>綜合測驗12-20題</span>
+            </button>
+          </div>
+
+          <div class="viewer-info-card">
+            <h4>試卷原檔備忘</h4>
+            <ul>
+              <li><strong>學校：</strong>智光商工日間部</li>
+              <li><strong>學期：</strong>115學年度第1學期 第一次段考</li>
+              <li><strong>班級：</strong>資處一仁</li>
+              <li><strong>座號姓名：</strong>3號 李英慈</li>
+              <li><strong>原始得分：</strong>80 分 (班平均 68.74)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="viewer-display">
+          <div class="viewer-toolbar">
+            <span class="current-img-label" id="current-img-label">目前檢視：第 1 頁 (1.jpg)</span>
+            <div class="zoom-actions">
+              <button class="btn btn-sm btn-outline" id="zoom-in">放大 +</button>
+              <button class="btn btn-sm btn-outline" id="zoom-reset">還原 100%</button>
+              <button class="btn btn-sm btn-outline" id="zoom-out">縮小 -</button>
+            </div>
+          </div>
+          <div class="image-viewport" id="image-viewport">
+            <img src="1.jpg" alt="考卷原圖第1頁" id="exam-full-img" class="exam-inspect-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 測驗成績結算模態視窗 (Modal) -->
+  <div class="modal-backdrop" id="score-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">🎉 測驗結算成績單</h3>
+        <button class="modal-close-btn" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-score-banner">
+          <div class="score-circle">
+            <span class="score-big" id="modal-score-num">80</span>
+            <span class="score-unit">/ 100分</span>
+          </div>
+          <div class="score-comment-box">
+            <h4 id="modal-verdict">表現優異！</h4>
+            <p id="modal-comment">您已達到高分水準，針對失分題目，可立即前往「錯題特訓」單元進行靶向鞏固！</p>
+          </div>
+        </div>
+
+        <div class="score-stats-row">
+          <div class="stat-box">
+            <span class="sb-label">答對題數</span>
+            <span class="sb-val text-success" id="modal-correct-count">28 / 35</span>
+          </div>
+          <div class="stat-box">
+            <span class="sb-label">錯題題數</span>
+            <span class="sb-val text-danger" id="modal-wrong-count">7 題</span>
+          </div>
+          <div class="stat-box">
+            <span class="sb-label">相較班平均</span>
+            <span class="sb-val text-success" id="modal-diff-avg">+11.26</span>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="modal-btn-review">留在本頁查看逐題詳解</button>
+          <button class="btn btn-secondary" id="modal-btn-mistakes">轉往英慈錯題精練</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>智光商工 115學年度第1學期 第一次段考 國語文 智慧數位學習平台</p>
+      <p class="copyright">打造專屬互動學習體驗・針對資處一仁李英慈同學考卷量身編製</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
